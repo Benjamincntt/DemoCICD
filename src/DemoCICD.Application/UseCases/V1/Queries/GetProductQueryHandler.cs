@@ -1,7 +1,7 @@
-﻿using Application.Abstractions.Message;
+﻿using DemoCICD.Application.Abstractions.Message;
 using DemoCICD.Domain.Shared;
 
-namespace Application.UseCases.V1.Queries;
+namespace DemoCICD.Application.UseCases.V1.Queries;
 
 public sealed class GetProductQueryHandler : IQueryHandler<GetProductQuery, GetProductResponse>
 {

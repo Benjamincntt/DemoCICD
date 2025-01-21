@@ -1,7 +1,7 @@
 ﻿using DemoCICD.Domain.Shared;
 using MediatR;
 
-namespace Application.Abstractions.Message;
+namespace DemoCICD.Application.Abstractions.Message;
 
 public interface ICommandHandler<TCommand> : IRequestHandler<TCommand, Result>
     where TCommand : ICommand

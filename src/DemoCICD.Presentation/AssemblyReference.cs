@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace DemoCICD.Persistence;
+namespace DemoCICD.Presentation;
 
 public static class AssemblyReference
 {

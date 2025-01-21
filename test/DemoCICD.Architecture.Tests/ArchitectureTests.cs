@@ -1,4 +1,5 @@
-﻿using Application.Abstractions.Message;
+﻿using DemoCICD.Application.Abstractions.Message;
+using DemoCICD.Domain;
 using FluentAssertions;
 using NetArchTest.Rules;
 
@@ -18,14 +19,14 @@ public class ArchitectureTests
     public void Domain_Should_Not_HaveDependenceOnOtherProject()
     {
         // Arrange
-        var assembly = Domain.AssemblyReference.Assembly;
+        var assembly = AssemblyReference.Assembly;
         var otherProjects = new[]
         {
             ApplicationNamespace,
             InfrastructureNamespace,
             PersistenceNamespace,
             PresentationNamespace,
-            ApiNamespace,
+            ApiNamespace
         };
 
         // Act
@@ -43,13 +44,13 @@ public class ArchitectureTests
     public void Application_Should_Not_HaveDependenceOnOtherProject()
     {
         // Arrange
-        var assembly = Domain.AssemblyReference.Assembly;
+        var assembly = Application.AssemblyReference.Assembly;
         var otherProjects = new[]
         {
             InfrastructureNamespace,
             PersistenceNamespace,
             PresentationNamespace,
-            ApiNamespace,
+            ApiNamespace
         };
 
         // Act
@@ -67,11 +68,11 @@ public class ArchitectureTests
     public void Infrastructure_Should_Not_HaveDependencyOnOtherProject()
     {
         // Arrange
-        var assembly = Domain.AssemblyReference.Assembly;
+        var assembly = Infrastructure.AssemblyReference.Assembly;
         var otherProjects = new[]
         {
             PresentationNamespace,
-            ApiNamespace,
+            ApiNamespace
         };
 
         // Act
@@ -89,13 +90,13 @@ public class ArchitectureTests
     public void Persistence_Should_Not_HaveDependencyOnOtherProject()
     {
         // Arrange
-        var assembly = Domain.AssemblyReference.Assembly;
+        var assembly = Persistence.AssemblyReference.Assembly;
         var otherProjects = new[]
         {
             ApplicationNamespace,
             InfrastructureNamespace,
             PresentationNamespace,
-            ApiNamespace,
+            ApiNamespace
         };
 
         // Act
@@ -113,11 +114,11 @@ public class ArchitectureTests
     public void Presentation_Should_Not_HaveDependencyOnOtherProject()
     {
         // Arrange
-        var assembly = Domain.AssemblyReference.Assembly;
+        var assembly = Presentation.AssemblyReference.Assembly;
         var otherProjects = new[]
         {
             InfrastructureNamespace,
-            ApiNamespace,
+            ApiNamespace
         };
 
         // Act
@@ -132,6 +133,7 @@ public class ArchitectureTests
     }
 
     #region =========== Commmand ===========
+
     [Fact]
     public void Command_Should_Have_NamingConventionEndingCommand()
     {
@@ -149,7 +151,7 @@ public class ArchitectureTests
         // Assert
         testResult.IsSuccessful.Should().BeTrue();
     }
-    
+
     [Fact]
     public void CommandT_Should_Have_NamingConventionEndingCommand()
     {
@@ -185,7 +187,7 @@ public class ArchitectureTests
         // Assert
         testResult.IsSuccessful.Should().BeTrue();
     }
-    
+
     [Fact]
     public void CommandT_Should_Have_BeSealed()
     {
@@ -203,7 +205,7 @@ public class ArchitectureTests
         // Assert
         testResult.IsSuccessful.Should().BeTrue();
     }
-    
+
     [Fact]
     public void CommandHandlers_Should_Have_NamingConventionEndingCommandHandler()
     {
@@ -221,7 +223,7 @@ public class ArchitectureTests
         // Assert
         testResult.IsSuccessful.Should().BeTrue();
     }
-    
+
     [Fact]
     public void CommandHandlers_Should_Have_BeSealed()
     {
@@ -239,7 +241,7 @@ public class ArchitectureTests
         // Assert
         testResult.IsSuccessful.Should().BeTrue();
     }
-    
+
     [Fact]
     public void HandlerT_Should_Have_NamingConventionEndingCommandHandler()
     {
@@ -257,7 +259,7 @@ public class ArchitectureTests
         // Assert
         testResult.IsSuccessful.Should().BeTrue();
     }
-    
+
     [Fact]
     public void HandlersT_Should_Have_BeSealed()
     {
@@ -275,10 +277,11 @@ public class ArchitectureTests
         // Assert
         testResult.IsSuccessful.Should().BeTrue();
     }
+
     #endregion End Command
 
     #region =========== Query ===========
-    
+
     [Fact]
     public void Query_Should_Have_NamingConventionEndingQuery()
     {
@@ -314,7 +317,7 @@ public class ArchitectureTests
         // Assert
         testResult.IsSuccessful.Should().BeTrue();
     }
-    
+
     [Fact]
     public void QueryHandlers_Should_Have_NamingConventionEndingQueryHandler()
     {
@@ -332,7 +335,7 @@ public class ArchitectureTests
         // Assert
         testResult.IsSuccessful.Should().BeTrue();
     }
-    
+
     [Fact]
     public void QueryHandlers_Should_Have_BeSealed()
     {
