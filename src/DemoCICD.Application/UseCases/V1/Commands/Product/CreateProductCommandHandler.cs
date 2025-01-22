@@ -1,5 +1,5 @@
-﻿using DemoCICD.Application.Abstractions.Message;
-using DemoCICD.Domain.Shared;
+﻿using DemoCICD.Contract.Abstractions.Message;
+using DemoCICD.Contract.Shared;
 
 namespace DemoCICD.Application.UseCases.V1.Commands.Product;
 
