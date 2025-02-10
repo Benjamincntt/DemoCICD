@@ -1,7 +1,5 @@
-using DemoCICD.Application;
-using DemoCICD.Application.Behaviors;
-using FluentValidation;
-using MediatR;
+using DemoCICD.Application.DependencyInjection.Extensions;
+using DemoCICD.Persistence.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,11 +11,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add configuration
-builder.Services.AddMediatR(option => option.RegisterServicesFromAssembly(AssemblyReference.Assembly));
-builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
-builder.Services.AddValidatorsFromAssembly(
-    AssemblyReference.Assembly,
-    includeInternalTypes: true);
+builder.Services.AddConfigureMediatR();
+builder.Services.ConfigureSqlServerRetryOptions(builder.Configuration.GetSection(nameof(SqlServerRetryOptions)));
+builder.Services.AddSqlConfiguration();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

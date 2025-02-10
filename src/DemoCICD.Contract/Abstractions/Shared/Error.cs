@@ -1,4 +1,4 @@
-﻿namespace DemoCICD.Contract.Shared;
+﻿namespace DemoCICD.Contract.Abstractions.Shared;
 
 public class Error : IEquatable<Error>
 {
@@ -8,8 +8,8 @@ public class Error : IEquatable<Error>
 
     public Error(string code, string message)
     {
-        Code = code;
-        Message = message;
+        this.Code = code;
+        this.Message = message;
     }
 
     public string Code { get; }
@@ -20,7 +20,7 @@ public class Error : IEquatable<Error>
     {
         if (other is null) return false;
 
-        return Code == other.Code && Message == other.Message;
+        return this.Code == other.Code && this.Message == other.Message;
     }
 
     public static implicit operator string(Error error)
@@ -44,16 +44,16 @@ public class Error : IEquatable<Error>
 
     public override bool Equals(object? obj)
     {
-        return obj is Error error && Equals(error);
+        return obj is Error error && this.Equals(error);
     }
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Code, Message);
+        return HashCode.Combine(this.Code, this.Message);
     }
 
     public override string ToString()
     {
-        return Code;
+        return this.Code;
     }
 }

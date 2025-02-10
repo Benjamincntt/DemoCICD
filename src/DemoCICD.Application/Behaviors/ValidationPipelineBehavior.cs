@@ -1,4 +1,4 @@
-﻿using DemoCICD.Contract.Shared;
+﻿using DemoCICD.Contract.Abstractions.Shared;
 using FluentValidation;
 using MediatR;
 
@@ -20,7 +20,10 @@ public class ValidationPipelineBehavior<TRequest, TResponse> : IPipelineBehavior
         RequestHandlerDelegate<TResponse> next,
         CancellationToken cancellationToken)
     {
-        if (!_validators.Any()) return await next();
+        if (!_validators.Any())
+        {
+            return await next();
+        }
 
         var errors = _validators
             .Select(x => x.Validate(request))
@@ -31,7 +34,10 @@ public class ValidationPipelineBehavior<TRequest, TResponse> : IPipelineBehavior
                 failure.ErrorMessage))
             .Distinct()
             .ToArray();
-        if (errors.Length != 0) return CreateValidationResult<TResponse>(errors);
+        if (errors.Length != 0)
+        {
+            return CreateValidationResult<TResponse>(errors);
+        }
 
         return await next();
     }

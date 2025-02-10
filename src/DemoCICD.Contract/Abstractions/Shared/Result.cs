@@ -1,4 +1,4 @@
-﻿namespace DemoCICD.Contract.Shared;
+﻿namespace DemoCICD.Contract.Abstractions.Shared;
 
 public class Result
 {
@@ -8,13 +8,13 @@ public class Result
 
         if (!isSuccess && error == Error.None) throw new InvalidOperationException();
 
-        IsSuccess = isSuccess;
-        Error = error;
+        this.IsSuccess = isSuccess;
+        this.Error = error;
     }
 
     public bool IsSuccess { get; }
 
-    public bool IsFailure => !IsSuccess;
+    public bool IsFailure => !this.IsSuccess;
 
     public Error Error { get; }
 

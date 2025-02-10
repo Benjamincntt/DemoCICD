@@ -14,6 +14,8 @@ public class ArchitectureTests
     private const string PresentationNamespace = "DemoCICD.Presentation";
     private const string ApiNamespace = "DemoCICD.API";
 
+    #region ========== Architecture ==========
+
     // không cho reference lung tung các project => khi rreference vãn chưa bắt lỗi mà khi add thật sự thì mới báo lỗi
     [Fact]
     public void Domain_Should_Not_HaveDependenceOnOtherProject()
@@ -132,6 +134,7 @@ public class ArchitectureTests
         testResult.IsSuccessful.Should().BeTrue();
     }
 
+    #endregion ========== Architecture ==========
     #region =========== Commmand ===========
 
     [Fact]
