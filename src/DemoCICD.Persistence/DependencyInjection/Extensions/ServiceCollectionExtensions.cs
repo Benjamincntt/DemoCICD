@@ -1,5 +1,8 @@
-﻿using DemoCICD.Domain.Entities.Identity;
+﻿using DemoCICD.Domain.Abstractions;
+using DemoCICD.Domain.Abstractions.Repository;
+using DemoCICD.Domain.Entities.Identity;
 using DemoCICD.Persistence.DependencyInjection.Options;
+using DemoCICD.Persistence.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -47,8 +50,13 @@ public static class ServiceCollectionExtensions
             options.Password.RequireUppercase = false;
             options.Password.RequiredLength = 6;
             options.Password.RequiredUniqueChars = 1;
-            options.User.RequireUniqueEmail = true;
         });
+    }
+
+    public static void AddRepositoryBaseConfiguration(this IServiceCollection services)
+    {
+        services.AddTransient(typeof(IUnitOfWork), typeof(EFUnitOfWork))
+            .AddTransient(typeof(IRepositoryBase<,>), typeof(RepositoryBase<,>));
     }
 
     public static OptionsBuilder<SqlServerRetryOptions> ConfigureSqlServerRetryOptions(this IServiceCollection services,

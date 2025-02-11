@@ -15,4 +15,7 @@ internal static class TableNames
     internal const string AppRoleClaims = nameof(AppRoleClaims);
     internal const string AppUserLogins = nameof(AppUserLogins);
     internal const string AppUserTokens = nameof(AppUserTokens);
+    
+    // *********** Singular Nouns ***********
+    internal const string Product = nameof(Product);
 }
